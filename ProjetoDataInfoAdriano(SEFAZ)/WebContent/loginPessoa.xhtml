@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+
+	<title>Projeto: DataInfo (SEFAZ)</title>
+
+</h:head>
+
+<h:body>
+
+	<h:form>
+		
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
+
+		<p:panel header="Login" modal="true"
+			style="width:280px; height:300px;" >
+
+			<div style="font-size:15px; color: #6495ED;">
+			Seja Bem vindo!
+						
+			<br/><br/>
+	
+			Identifique-se por favor para utilizar o sistema.
+			</div>
+			<br/>
+
+			<h:panelGrid columns="3">
+				<h:outputLabel value="Nome: " />
+				<p:inputText id="keyword1" value="#{LoginPessoaBean.pessoaLogin}"
+					label="Keyword1" />
+				<p:watermark for="keyword1" value="Nome" id="watermark1" />
+
+				<h:outputLabel value="Senha: " />
+				<p:password id="pwd1" value="#{LoginPessoaBean.pessoaSenha}"
+					label="pwd1" />
+				<p:watermark for="pwd1" value="Password" id="watermark3" />
+			</h:panelGrid>
+			
+			<br/>
+
+			<h:panelGrid columns="2">
+				<p:commandButton value="Entrar"
+					actionListener="#{LoginPessoaBean.entrar}" />
+				<p:commandButton value="Novo Usuário"
+					actionListener="#{LoginPessoaBean.pessoaNova}" />				
+			</h:panelGrid>
+
+			<h:panelGrid>
+								
+				<p:commandLink  value="Limpar"  action= "#{LoginPessoaBean.limpar}"  update="@form"   process="@this" style="font-size:15px; color:red"/>
+												
+			</h:panelGrid>
+
+		</p:panel>
+		
+	</h:form>
+
+</h:body>
+
+</html>

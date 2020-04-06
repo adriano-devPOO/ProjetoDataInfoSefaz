@@ -1,0 +1,22 @@
+-- Scripts para criação do projeto --
+
+CREATE TABLE pessoa (
+    email VARCHAR(100) NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    senha VARCHAR(100) NOT NULL,
+    PRIMARY KEY (email) 
+);
+
+CREATE TABLE telefone (
+   id INT NOT NULL,
+   ddd INT NOT NULL,
+   numero VARCHAR(100) NOT NULL,
+   tipo VARCHAR(100) NOT NULL,
+   email_pessoa VARCHAR(100) NOT NULL,
+   PRIMARY KEY (id),
+   CONSTRAINT FK_PESSOATELEFONE FOREIGN KEY (email_pessoa)
+   REFERENCES pessoa(email)
+);
+
+CREATE SEQUENCE S_TELEFONE 
+	MINVALUE 1 MAXVALUE 999999 INCREMENT BY 1 START WITH 1;

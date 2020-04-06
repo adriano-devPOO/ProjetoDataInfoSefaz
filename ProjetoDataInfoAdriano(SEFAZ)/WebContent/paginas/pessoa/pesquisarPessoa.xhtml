@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+</h:head>
+
+<h:body>
+	<h:form>
+		
+		<p:panel header="Lista de Usuários" style="margin-bottom:10px; width: 80%">
+			<p:dataTable  var="pessoa" value="#{CadastroPessoaBean.listaPessoas}">
+				<p:column headerText="Nome">
+					<h:outputText value="#{pessoa.nome}" />
+				</p:column>
+				<p:column headerText="Email" size="120">
+					<h:outputText value="#{pessoa.email}" />
+				</p:column>
+				<p:column headerText="Editar" width="8%">
+					<p:commandButton icon="pi pi-pencil" action="#{CadastroPessoaBean.editar}"> 
+						<f:setPropertyActionListener
+							target="#{CadastroPessoaBean.emailSelecionado}"
+							value="#{pessoa.email}" />
+					</p:commandButton>
+				</p:column>
+				<p:column headerText="Remover" width="9%">
+					<p:commandButton icon="pi pi-times" updta="@form" action="#{CadastroPessoaBean.remover}">
+					<f:setPropertyActionListener 
+							target="#{CadastroPessoaBean.emailSelecionado}"
+							value="#{pessoa.email}" />
+					</p:commandButton>
+				</p:column>
+				
+			</p:dataTable>
+		</p:panel>
+		
+		<p:panelGrid id="gridCampos">
+		
+			<p:row>
+				<p:column>
+					<p:commandButton value="Atualizar Lista" update="@form"
+						 actionListener="#{CadastroPessoaBean.pesquisar}" style="margin-right:20px;"/>				
+				
+					<p:commandButton value="Novo Usuario" updta="@form" 
+					actionListener="#{CadastroPessoaBean.cadastroPessoa}" />
+				</p:column>
+			</p:row>
+			
+		</p:panelGrid>
+		
+	</h:form>
+</h:body>
+</html>

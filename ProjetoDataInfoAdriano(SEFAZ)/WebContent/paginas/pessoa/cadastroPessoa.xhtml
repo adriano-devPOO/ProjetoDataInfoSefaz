@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<title>Projeto: DataInfo (SEFAZ)</title>
+	<h:outputStylesheet name="primeicons/primeicons.css"
+		library="primefaces" />
+
+</h:head>
+
+<h:body>
+
+	<h:form id="form">
+
+		<p:panel id="texto" header="Cadastro Pessoa"
+			style="width:100%; height:700px;">
+
+			<p:panel header="Dados" size="120" style="height:180px;">
+
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Nome: " />
+					<p:inputText value="#{CadastroPessoaBean.pessoa.nome}" size="120" />
+
+					<h:outputLabel value="E-mail: " />
+					<p:inputText value="#{CadastroPessoaBean.pessoa.email}" size="100" />
+
+					<h:outputLabel value="Senha: " />
+					<p:inputText value="#{CadastroPessoaBean.pessoa.senha}" size="5" />
+
+				</h:panelGrid>
+
+			</p:panel>
+
+			<p:panel header="Telefone" size="120" style="height:280px;">
+				<p:panelGrid columns="2">
+
+					<h:outputLabel value="DDD: " />
+					<p:inputText size="2" value="#{CadastroPessoaBean.telefone.ddd}" />
+
+					<h:outputLabel value="Numero: " />
+					<p:inputText size="15" value="#{CadastroPessoaBean.telefone.numero}" />
+
+					<h:outputLabel value="Tipo: " />
+					<p:selectOneMenu style="width:125px" value="#{CadastroPessoaBean.telefone.tipo}">
+						<f:selectItem itemLabel="Celular" itemValue="CELULAR" />
+						<f:selectItem itemLabel="Fixo" itemValue="FIXO" />
+					</p:selectOneMenu>
+
+					<p:commandButton value="Adicionar" update="telefones"
+						actionListener="#{CadastroPessoaBean.adicionarTelefone}" />
+				</p:panelGrid>
+
+				<p:dataTable id="telefones" var="telefone" value="#{CadastroPessoaBean.pessoa.telefones}">
+					<p:column headerText="DDD">
+						<h:outputText value="#{telefone.ddd}" />
+					</p:column>
+					<p:column headerText="Numero">
+						<h:outputText value="#{telefone.numero}" />
+					</p:column>
+					<p:column headerText="Tipo">
+						<h:outputText value="#{telefone.tipo}" />
+					</p:column>
+				</p:dataTable>
+
+			</p:panel>
+
+			<h:panelGrid columns="3" cellspacing="20">
+				<p:commandButton value="Salvar" update="@form"
+					actionListener="#{CadastroPessoaBean.salvar}" />
+				<p:commandButton value="Limpar" update="@form" actionListener="#{CadastroPessoaBean.limpar}" />
+				<input type="button" value="Voltar" onclick="location.href='http://localhost:9099/Projeto%20Fuctura%20Sefaz%20Adriano/faces/paginas/pessoa/pesquisarPessoa.xhtml'"/>
+				<input type="button" value="Home" onclick="location.href='http://localhost:9099/Projeto%20Fuctura%20Sefaz%20Adriano/faces/loginPessoa.xhtml'"/>
+			</h:panelGrid>
+
+		</p:panel>
+
+	</h:form>
+
+</h:body>
+
+</html>
